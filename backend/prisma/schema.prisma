@@ -1,0 +1,58 @@
+// https://docs.nestjs.com/recipes/prisma#set-up-prisma
+// https://www.prisma.io/docs/orm/prisma-client/setup-and-configuration/introduction
+
+// https://www.youtube.com/watch?v=ruC2epbZgEM for prisma 7 only
+generator client {
+  provider = "prisma-client"
+  output = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Warehouse {
+  id               Int               @id @default(autoincrement())
+  name             String
+  stocks           Stock[]
+  purchaseRequests PurchaseRequest[]
+}
+
+model Product {
+  id                   Int                   @id @default(autoincrement())
+  name                 String
+  sku                  String                @unique
+  stocks               Stock[]
+  purchaseRequestItems PurchaseRequestItem[]
+}
+
+model Stock {
+  warehouseId Int       @map("warehouse_id")
+  productId   Int       @map("product_id")
+  quantity    Int
+
+  warehouse   Warehouse @relation(fields: [warehouseId], references: [id])
+  product     Product   @relation(fields: [productId], references: [id])
+
+  @@id([warehouseId, productId])
+}
+
+model PurchaseRequest {
+  id          Int                   @id @default(autoincrement())
+  reference   String                @unique
+  warehouseId Int                   @map("warehouse_id")
+  status      String
+
+  warehouse   Warehouse             @relation(fields: [warehouseId], references: [id])
+  items       PurchaseRequestItem[]
+}
+
+model PurchaseRequestItem {
+  id                Int             @id @default(autoincrement())
+  purchaseRequestId Int             @map("purchase_request_id")
+  productId         Int             @map("product_id")
+  quantity          Int
+
+  purchaseRequest   PurchaseRequest @relation(fields: [purchaseRequestId], references: [id])
+  product           Product         @relation(fields: [productId], references: [id])
+}
