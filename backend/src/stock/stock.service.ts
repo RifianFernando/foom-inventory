@@ -8,15 +8,15 @@ export class StockService {
   constructor(private readonly stockRepository: StockRepository) {}
 
   async getStocks(params: GetStocksDto): Promise<GetStocksResponseDto> {
-    const [stocks, total] = await this.stockRepository.findAll(params);
+    const { stocks, total } = await this.stockRepository.findAll(params);
 
     const data = stocks.map((stock) => ({
       warehouseId: stock.warehouseId,
       productId: stock.productId,
       quantity: stock.quantity,
-      productName: (stock as any).product?.name,
-      productSku: (stock as any).product?.sku,
-      warehouseName: (stock as any).warehouse?.name,
+      productName: stock.product?.name,
+      productSku: stock.product?.sku,
+      warehouseName: stock.warehouse?.name,
     }));
 
     return {

@@ -5,6 +5,9 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  Get,
+  Delete,
+  Query,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
@@ -26,6 +29,32 @@ import { UpdatePurchaseRequestDto } from './dto/update-purchase-request.dto';
 @Controller('purchase')
 export class PurchaseController {
   constructor(private readonly purchaseService: PurchaseService) {}
+
+  @Get('warehouses')
+  @ApiOperation({ summary: 'List warehouses' })
+  @ApiOkResponse({ description: 'List of warehouses' })
+  async getListWarehouses() {
+    return await this.purchaseService.findAllWarehouses();
+  }
+
+  @Get('request')
+  @ApiOperation({ summary: 'List purchase requests' })
+  @ApiOkResponse({ description: 'List of purchase requests' })
+  async getListPurchaseRequests(
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 10,
+    @Query('search') search: string,
+  ) {
+    return await this.purchaseService.findAll({ page, limit, search });
+  }
+
+  @Get('request/:id')
+  @ApiOperation({ summary: 'Get purchase request details' })
+  @ApiOkResponse({ description: 'Purchase request details' })
+  @ApiNotFoundResponse({ description: 'Purchase request not found' })
+  async getPurchaseRequest(@Param('id', ParseIntPipe) id: number) {
+    return await this.purchaseService.findOne(id);
+  }
 
   @Post('request')
   @ApiOperation({ summary: 'Create a new purchase request' })
@@ -57,5 +86,19 @@ export class PurchaseController {
     @Body() dto: UpdatePurchaseRequestDto,
   ): Promise<CreatePurchaseRequestResponseDto> {
     return await this.purchaseService.update(id, dto);
+  }
+
+  @Delete('request/:id')
+  @ApiOperation({ summary: 'Delete a purchase request' })
+  @ApiOkResponse({ description: 'Purchase request deleted successfully' })
+  @ApiNotFoundResponse({ description: 'Purchase request not found' })
+  @ApiBadRequestResponse({
+    description: 'Purchase request can only be deleted when DRAFT',
+  })
+  @ApiInternalServerErrorResponse({ description: 'Internal server error' })
+  async deletePurchaseRequest(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<void> {
+    return await this.purchaseService.delete(id);
   }
 }

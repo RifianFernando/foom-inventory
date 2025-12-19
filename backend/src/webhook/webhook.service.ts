@@ -11,7 +11,8 @@ export class WebhookService {
   constructor(private readonly prisma: PrismaService) {}
 
   async receiveStock(payload: ReceiveStockDto) {
-    const { reference, details } = payload.data;
+    const { reference, details } = payload;
+    console.log('receiveStock payload:', payload);
 
     // 1. Lookup PurchaseRequest
     const purchaseRequest = await this.prisma.purchaseRequest.findUnique({
@@ -19,6 +20,7 @@ export class WebhookService {
     });
 
     if (!purchaseRequest) {
+      console.log('purchase request not found for reference:', reference);
       throw new NotFoundException(
         `Purchase Request with reference ${reference} not found`,
       );
@@ -26,8 +28,11 @@ export class WebhookService {
 
     // 3. Check first if purchase request is completed
     if (purchaseRequest.status === 'COMPLETED') {
+      console.log('product already completed for reference:', reference);
       return { message: 'Stock already processed', status: 'COMPLETED' };
     }
+
+    console.log('belom ada error, lanjut proses stock update');
 
     // Process stock update in transaction
     await this.prisma.$transaction(async (tx) => {
@@ -38,6 +43,7 @@ export class WebhookService {
         });
 
         if (!product) {
+          console.log('product not found for sku:', item.sku_barcode);
           throw new BadRequestException(
             `Product with SKU ${item.sku_barcode} not found`,
           );

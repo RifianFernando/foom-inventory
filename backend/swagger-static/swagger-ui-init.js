@@ -143,7 +143,60 @@ window.onload = function() {
           ]
         }
       },
+      "/purchase/warehouses": {
+        "get": {
+          "operationId": "PurchaseController_getListWarehouses",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "List of warehouses"
+            }
+          },
+          "summary": "List warehouses",
+          "tags": [
+            "Purchases"
+          ]
+        }
+      },
       "/purchase/request": {
+        "get": {
+          "operationId": "PurchaseController_getListPurchaseRequests",
+          "parameters": [
+            {
+              "name": "page",
+              "required": true,
+              "in": "query",
+              "schema": {
+                "type": "number"
+              }
+            },
+            {
+              "name": "limit",
+              "required": true,
+              "in": "query",
+              "schema": {
+                "type": "number"
+              }
+            },
+            {
+              "name": "search",
+              "required": true,
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "List of purchase requests"
+            }
+          },
+          "summary": "List purchase requests",
+          "tags": [
+            "Purchases"
+          ]
+        },
         "post": {
           "operationId": "PurchaseController_createPurchaseRequest",
           "parameters": [],
@@ -182,6 +235,31 @@ window.onload = function() {
         }
       },
       "/purchase/request/{id}": {
+        "get": {
+          "operationId": "PurchaseController_getPurchaseRequest",
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "number"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Purchase request details"
+            },
+            "404": {
+              "description": "Purchase request not found"
+            }
+          },
+          "summary": "Get purchase request details",
+          "tags": [
+            "Purchases"
+          ]
+        },
         "put": {
           "operationId": "PurchaseController_updatePurchaseRequest",
           "parameters": [
@@ -226,6 +304,37 @@ window.onload = function() {
             }
           },
           "summary": "Update a purchase request",
+          "tags": [
+            "Purchases"
+          ]
+        },
+        "delete": {
+          "operationId": "PurchaseController_deletePurchaseRequest",
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "number"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Purchase request deleted successfully"
+            },
+            "400": {
+              "description": "Purchase request can only be deleted when DRAFT"
+            },
+            "404": {
+              "description": "Purchase request not found"
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          },
+          "summary": "Delete a purchase request",
           "tags": [
             "Purchases"
           ]
@@ -523,19 +632,35 @@ window.onload = function() {
             "sku_barcode": {
               "type": "string"
             },
+            "product_name": {
+              "type": "string"
+            },
             "qty": {
               "type": "number"
             }
           },
           "required": [
             "sku_barcode",
+            "product_name",
             "qty"
           ]
         },
-        "WebhookDataDto": {
+        "ReceiveStockDto": {
           "type": "object",
           "properties": {
+            "request_id": {
+              "type": "string"
+            },
+            "send_date": {
+              "type": "string"
+            },
             "reference": {
+              "type": "string"
+            },
+            "qty_total": {
+              "type": "number"
+            },
+            "status_request": {
               "type": "string"
             },
             "details": {
@@ -546,19 +671,12 @@ window.onload = function() {
             }
           },
           "required": [
+            "request_id",
+            "send_date",
             "reference",
+            "qty_total",
+            "status_request",
             "details"
-          ]
-        },
-        "ReceiveStockDto": {
-          "type": "object",
-          "properties": {
-            "data": {
-              "$ref": "#/components/schemas/WebhookDataDto"
-            }
-          },
-          "required": [
-            "data"
           ]
         }
       }

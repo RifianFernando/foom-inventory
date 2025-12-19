@@ -1,0 +1,520 @@
+{
+	"info": {
+		"_postman_id": "bfdec10f-eec5-4133-8cc4-9b775bb197f2",
+		"name": "Foom",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19995857"
+	},
+	"item": [
+		{
+			"name": "Purchase",
+			"item": [
+				{
+					"name": "Purchase/Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"reference\": \"PR-2025-001\",\r\n  \"warehouseId\": 21,\r\n  \"items\": [\r\n    { \"productId\": 21, \"quantity\": 10 },\r\n    { \"productId\": 22, \"quantity\": 5 }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/purchase/request",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"purchase",
+								"request"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201 Response example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"reference\": \"PR-2025-001\",\r\n  \"warehouseId\": 21,\r\n  \"items\": [\r\n    { \"productId\": 21, \"quantity\": 10 },\r\n    { \"productId\": 22, \"quantity\": 5 }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/purchase/request",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"purchase",
+										"request"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "156"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9c-nbhsm5grTo7/64hNHWcRcchcXkY\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Dec 2025 14:43:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 31,\n    \"reference\": \"PR-2025-001\",\n    \"warehouseId\": 21,\n    \"status\": \"DRAFT\",\n    \"items\": [\n        {\n            \"id\": 59,\n            \"productId\": 21,\n            \"quantity\": 10\n        },\n        {\n            \"id\": 60,\n            \"productId\": 22,\n            \"quantity\": 5\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Purchase/Request/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": \"PENDING\",\r\n  \"reference\": \"string\",\r\n  \"items\": [\r\n    {\r\n      \"productId\": 2,\r\n      \"quantity\": 1\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/purchase/request/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"purchase",
+								"request",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201 Response example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"reference\": \"PR-2025-001\",\r\n  \"warehouseId\": 21,\r\n  \"items\": [\r\n    { \"productId\": 21, \"quantity\": 10 },\r\n    { \"productId\": 22, \"quantity\": 5 }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/purchase/request",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"purchase",
+										"request"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "156"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9c-nbhsm5grTo7/64hNHWcRcchcXkY\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Dec 2025 14:43:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 31,\n    \"reference\": \"PR-2025-001\",\n    \"warehouseId\": 21,\n    \"status\": \"DRAFT\",\n    \"items\": [\n        {\n            \"id\": 59,\n            \"productId\": 21,\n            \"quantity\": 10\n        },\n        {\n            \"id\": 60,\n            \"productId\": 22,\n            \"quantity\": 5\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "purchase/request/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"reference\": \"string\",\r\n    \"details\": [\r\n      {\r\n        \"sku_barcode\": \"string\",\r\n        \"qty\": 0\r\n      }\r\n    ]\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/purchase/request/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"purchase",
+								"request",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201 Response example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"reference\": \"PR-2025-001\",\r\n  \"warehouseId\": 21,\r\n  \"items\": [\r\n    { \"productId\": 21, \"quantity\": 10 },\r\n    { \"productId\": 22, \"quantity\": 5 }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/purchase/request",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"purchase",
+										"request"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "156"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9c-nbhsm5grTo7/64hNHWcRcchcXkY\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Dec 2025 14:43:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 31,\n    \"reference\": \"PR-2025-001\",\n    \"warehouseId\": 21,\n    \"status\": \"DRAFT\",\n    \"items\": [\n        {\n            \"id\": 59,\n            \"productId\": 21,\n            \"quantity\": 10\n        },\n        {\n            \"id\": 60,\n            \"productId\": 22,\n            \"quantity\": 5\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "webhook/receive-stock",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"reference\": \"string\",\r\n    \"details\": [\r\n      {\r\n        \"sku_barcode\": \"string\",\r\n        \"qty\": 0\r\n      }\r\n    ]\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/webhook/receive-stock",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"webhook",
+								"receive-stock"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201 Response example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"reference\": \"PR-2025-001\",\r\n  \"warehouseId\": 21,\r\n  \"items\": [\r\n    { \"productId\": 21, \"quantity\": 10 },\r\n    { \"productId\": 22, \"quantity\": 5 }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/purchase/request",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"purchase",
+										"request"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "156"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9c-nbhsm5grTo7/64hNHWcRcchcXkY\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Dec 2025 14:43:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 31,\n    \"reference\": \"PR-2025-001\",\n    \"warehouseId\": 21,\n    \"status\": \"DRAFT\",\n    \"items\": [\n        {\n            \"id\": 59,\n            \"productId\": 21,\n            \"quantity\": 10\n        },\n        {\n            \"id\": 60,\n            \"productId\": 22,\n            \"quantity\": 5\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Get Products Query Param",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/products",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Stocks Query Param",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stocks",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stocks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "request (foom webhook test)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "secret-key",
+						"value": "{{API_SECRET_KEY}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"webhook_response\": { \"event\": \"test\" }\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hub.foomid.id/api/request",
+					"protocol": "https",
+					"host": [
+						"hub",
+						"foomid",
+						"id"
+					],
+					"path": [
+						"api",
+						"request"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST 'http://localhost:3000/api/request' \\\r\n    -H 'secret-key: YOUR_SECRET_KEY' \\\r\n    -H 'Content-Type: application/json' \\\r\n    -d '{\r\n        \"webhook_response\": { \"event\": \"test\" }\r\n    }'"
+			},
+			"response": []
+		},
+		{
+			"name": "request/purchase",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "secret-key",
+						"value": "{{API_SECRET_KEY}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"vendor\": \"PT FOOM LAB GLOBAL\",\r\n        \"reference\": \"TEST-REF-001\",\r\n        \"qty_total\": 10,\r\n        \"details\": [{\r\n            \"product_name\": \"ICY MINT\",\r\n            \"sku_barcode\": \"ICYMINT\",\r\n            \"qty\": 10\r\n        },\r\n        {\r\n            \"product_name\": \"ICY WATERMELON\",\r\n            \"sku_barcode\": \"ICYWATERMELON\",\r\n            \"qty\": 10\r\n        }]\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hub.foomid.id/api/request/purchase",
+					"protocol": "https",
+					"host": [
+						"hub",
+						"foomid",
+						"id"
+					],
+					"path": [
+						"api",
+						"request",
+						"purchase"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST 'http://localhost:3000/api/request/purchase' \\\r\n    -H 'secret-key: YOUR_SECRET_KEY' \\\r\n    -H 'Content-Type: application/json' \\\r\n    -d '{\r\n        \"vendor\": \"PT FOOM LAB GLOBAL\",\r\n        \"reference\": \"TEST-REF-001\",\r\n        \"qty_total\": 10,\r\n        \"details\": [{\r\n            \"product_name\": \"ICY MINT\",\r\n            \"sku_barcode\": \"ICYMINT\",\r\n            \"qty\": 10\r\n        },\r\n        {\r\n            \"product_name\": \"ICY WATERMELON\",\r\n            \"sku_barcode\": \"ICYWATERMELON\",\r\n            \"qty\": 10\r\n        }]\r\n    }'"
+			},
+			"response": []
+		}
+	]
+}

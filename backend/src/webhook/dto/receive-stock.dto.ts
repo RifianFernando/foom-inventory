@@ -17,28 +17,42 @@ export class StockItemDetailDto {
   sku_barcode: string;
 
   @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  product_name: string;
+
+  @ApiProperty()
   @IsInt()
   @Min(1)
   qty: number;
 }
 
-export class WebhookDataDto {
+export class ReceiveStockDto {
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  request_id: string;
+
+  @ApiProperty()
+  @IsString()
+  send_date: string;
+
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
   reference: string;
+
+  @ApiProperty()
+  @IsInt()
+  qty_total: number;
+
+  @ApiProperty()
+  @IsString()
+  status_request: string;
 
   @ApiProperty({ type: [StockItemDetailDto] })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => StockItemDetailDto)
   details: StockItemDetailDto[];
-}
-
-export class ReceiveStockDto {
-  @ApiProperty()
-  @IsObject()
-  @ValidateNested()
-  @Type(() => WebhookDataDto)
-  data: WebhookDataDto;
 }
